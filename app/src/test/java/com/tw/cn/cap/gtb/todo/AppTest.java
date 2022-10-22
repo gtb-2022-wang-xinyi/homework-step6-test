@@ -11,6 +11,8 @@ class AppTest {
         final var result = new App().run();
         Assertions.assertEquals(List.of(
                 "# To be done",
-                "task01","task02"), result);
+                "1 task01",
+                "2 task02"),
+                result);
     }
 }
