@@ -12,14 +12,26 @@ public class App {
     }
 
     public List<String> run() {
-        final List<String> lines = readTaskLines();
+        final List<Task> tasks = loadTasks();
         final List<String> result = new ArrayList<>();
         result.add("# To be done");
-        for (int i = 0; i < lines.size(); i++){
-            result.add(String.format("%d %s", i + 1, lines.get(i)));
-
+        for (var task : tasks){
+            result.add(task.formate());
         }
         return result;
+    }
+
+    private List<Task> loadTasks() {
+        final List<String> lines = readTaskLines();
+        final List<Task> tasks = new ArrayList<>();
+        for (int i = 0; i < lines.size(); i++){
+            final var id = i + 1;
+            final var line = lines.get(i);
+            final var name = line;
+            final var task = new Task(id, name);
+            tasks.add(task);
+        }
+        return tasks;
     }
 
     private List<String> readTaskLines() {
