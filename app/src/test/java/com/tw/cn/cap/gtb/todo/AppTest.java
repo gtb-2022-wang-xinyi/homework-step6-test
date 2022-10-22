@@ -9,6 +9,8 @@ class AppTest {
     @Test
     void should_list_existing_tasks() {
         final var result = new App().run();
-        Assertions.assertEquals(List.of("task01","task02"), result);
+        Assertions.assertEquals(List.of(
+                "# To be done",
+                "task01","task02"), result);
     }
 }
