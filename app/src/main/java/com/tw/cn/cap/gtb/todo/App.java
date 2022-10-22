@@ -14,10 +14,19 @@ public class App {
     public List<String> run() {
         final List<Task> tasks = taskRepository.loadTasks();
         final List<String> result = new ArrayList<>();
+
         result.add("# To be done");
-        for (var task : tasks){
-            result.add(task.formate());
-        }
+        tasks.stream()
+                .filter(task -> !task.isCompleted())
+                .map(Task::formate)
+                .forEach(result::add);
+
+        result.add("# Completed");
+        tasks.stream()
+                .filter(Task::isCompleted)
+                .map(Task::formate)
+                .forEach(result::add);
+
         return result;
     }
 }
