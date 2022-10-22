@@ -1,22 +1,17 @@
 package com.tw.cn.cap.gtb.todo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class App {
 
-    private final TaskRepository taskRepository = new TaskRepository();
+    private final ListCommand listCommand = new ListCommand();
 
     public static void main(String[] args) {
         throw new UnsupportedOperationException();
     }
 
     public List<String> run() {
-        final List<Task> tasks = taskRepository.loadTasks();
-        final List<String> result = new ArrayList<>();
-        result.addAll(Section.tobedone().formate(tasks));
-        result.addAll(Section.completed().formate(tasks));
-        return result;
+        return listCommand.run();
     }
 
 }
